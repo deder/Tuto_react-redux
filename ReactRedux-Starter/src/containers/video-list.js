@@ -6,13 +6,19 @@ class VideoList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            videos:["test","tes1","test2","test3"]
+            videos:props.videos
         };
+    }
+    componentWillReceiveProps(props){
+        this.setState({
+            videos:props.videos            
+        });
     }
     render(){
         const VideoListItems = [];
-        for(const video of this.state.videos){
-            VideoListItems.push(<VideoListItem key={video} name={video} />);
+        for(let video of this.state.videos){
+            console.log(video.id)
+            VideoListItems.push(<VideoListItem key={video.id} title={video.title} release_date={video.release_date} />);
         }
         return (<ul>
             {VideoListItems}
