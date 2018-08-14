@@ -1,7 +1,13 @@
 import React from 'react'
+import SearchBar from '../components/search-bar';
 
-const App = function(){
-    return <div>Test</div>;
+
+const App = () => {
+    return (
+        <div>
+            <SearchBar />
+        </div>
+    ) ;
 }
 
 export default App;
