@@ -8,14 +8,16 @@ class App extends Component{
     constructor(props){
         super(props);
         this.state = {
-            popularMovies:[]
+            popularMovies:[],
+            currentMovie:{}
         };
     }
     componentWillMount(){
-        videoService.getPopularMovies().then((res)=>{
-            console.log(res.data.results);
+        videoService.getPopularMovies().then(({data: {results}})=>{
+            let [currentMovie,...popularMovies] = (results).splice(1,6);
             this.setState({
-                popularMovies:res.data.results.slice(1,6)
+                popularMovies,
+                currentMovie
             });
         })
     }
