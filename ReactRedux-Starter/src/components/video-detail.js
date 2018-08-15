@@ -8,7 +8,7 @@ const VideoDetail = ({title, description, release_date}) =>{
                 {title} || {release_date}
             </h1>
             <p>
-                {description}
+                {resume}
             </p>
         </div>
     )
