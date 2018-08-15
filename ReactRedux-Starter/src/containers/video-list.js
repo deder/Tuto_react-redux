@@ -16,8 +16,8 @@ class VideoList extends Component {
     }
     render(){
         const VideoListItems = [];
-        for(let {id, title, overview, release_date} of this.state.videos){
-            VideoListItems.push(<VideoListItem key={id} title={title} resume={overview} release_date={release_date} />);
+        for(let {id, title, release_date} of this.state.videos){
+            VideoListItems.push(<VideoListItem key={id} title={title} release_date={release_date} />);
         }
         return (<ul>
             {VideoListItems}
