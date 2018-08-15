@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Video from './video';
+
 
 
 const VideoDetail = ({title, resume, release_date, youtubeKey}) =>{
@@ -10,9 +12,7 @@ const VideoDetail = ({title, resume, release_date, youtubeKey}) =>{
                 <p>
                     {resume}
                 </p>
-                <p>
-                    {youtubeKey}
-                </p>
+                <Video videoId={youtubeKey}/>
             </div>
         )
 }
