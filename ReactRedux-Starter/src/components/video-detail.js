@@ -1,17 +1,16 @@
-import React from 'react';
-import { ReactDom } from 'react-dom';
+import React, {Component} from 'react';
 
-const VideoDetail = ({title, description, release_date}) =>{
-    return (
-        <div>
-            <h1>
-                {title} || {release_date}
-            </h1>
-            <p>
-                {resume}
-            </p>
-        </div>
-    )
+
+const VideoDetail = ({title, resume, release_date}) =>{
+        return (
+            <div>
+                <h1>
+                    {title} || {release_date}
+                </h1>
+                <p>
+                    {resume}
+                </p>
+            </div>
+        )
 }
-
 export default VideoDetail
