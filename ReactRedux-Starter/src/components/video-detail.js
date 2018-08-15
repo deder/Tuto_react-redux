@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 
-const VideoDetail = ({title, resume, release_date}) =>{
+const VideoDetail = ({title, resume, release_date, youtubeKey}) =>{
         return (
             <div>
                 <h1>
@@ -9,6 +9,9 @@ const VideoDetail = ({title, resume, release_date}) =>{
                 </h1>
                 <p>
                     {resume}
+                </p>
+                <p>
+                    {youtubeKey}
                 </p>
             </div>
         )

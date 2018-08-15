@@ -15,10 +15,25 @@ class App extends Component{
     componentWillMount(){
         videoService.getPopularMovies().then(({data: {results}})=>{
             let [currentMovie,...popularMovies] = (results).splice(1,6);
-            this.setState({
-                popularMovies,
-                currentMovie
-            });
+            videoService.getUrlVideoMovie(currentMovie.id).then(
+            (
+                {
+                    data: {
+                        videos: {
+                            results:[firstVideo]
+                        }
+                    }
+                }
+            )=>
+                {
+                    const youtubeKey = firstVideo.key;
+                    currentMovie.youtubeKey = youtubeKey;
+                    this.setState({
+                        popularMovies,
+                        currentMovie
+                    });
+                }
+            )
         })
     }
     render(){
@@ -29,7 +44,7 @@ class App extends Component{
         }
         const renderVideoDetail = ()=>{
             if(Object.keys(this.state.currentMovie).length > 0){
-                return <VideoDetail title={this.state.currentMovie.title} resume={this.state.currentMovie.overview} release_date={this.state.currentMovie.release_date}  />
+                return <VideoDetail youtubeKey={this.state.currentMovie.youtubeKey} title={this.state.currentMovie.title} resume={this.state.currentMovie.overview} release_date={this.state.currentMovie.release_date}  />
             }
         }
         return (
