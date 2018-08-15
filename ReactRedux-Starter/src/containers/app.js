@@ -22,11 +22,21 @@ class App extends Component{
         })
     }
     render(){
+        const renderMovieList = ()=>{
+            if(this.state.popularMovies.length > 0){
+                return <VideoList videos={this.state.popularMovies}/>
+            }
+        }
+        const renderVideoDetail = ()=>{
+            if(Object.keys(this.state.currentMovie).length > 0){
+                return <VideoDetail title={this.state.currentMovie.title} resume={this.state.currentMovie.overview} release_date={this.state.currentMovie.release_date}  />
+            }
+        }
         return (
             <div>
                 <SearchBar />
-                <VideoList videos={this.state.popularMovies}/>
-                <VideoDetail title={this.state.currentMovie.title} resume={this.state.currentMovie.overview} release_date={this.state.currentMovie.release_date}  />
+                {renderMovieList()}
+                {renderVideoDetail()}
             </div>
         );
     }
