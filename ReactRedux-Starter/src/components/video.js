@@ -5,7 +5,7 @@ const Video = ({videoId}) => {
         height: '390',
         width: '640',
         playerVars: { // https://developers.google.com/youtube/player_parameters
-            autoplay: 1,   
+            autoplay: 0,   
             iv_load_policy: 3,
             modestbranding: 1,
             rel:0,
