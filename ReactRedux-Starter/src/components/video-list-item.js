@@ -1,16 +1,35 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { ReactDom } from 'react-dom';
-
 import moment from 'moment'
 import IhmConfig from '../configs/ihm.config';
+import CardSmall from './card-small';
+import CardLarge from './card-large';
 moment.locale("fr");
-const VideoListItem = ({title, release_date, poster_path}) => {
-    return (
-        <li>
-            <img width="100px" src={`${IhmConfig.IMAGE_BASE_URL}${poster_path}`} />
-            {title} || Sorti {moment(release_date,"YYYY-MM-DD").fromNow()}
-        </li>
-    );
+
+class VideoListItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            release_date: props.release_date,
+            title: props.title,
+            index: props.index,
+            poster_path: props.poster_path
+        };
+    }
+    isSmallCard = () => {
+        return (this.state.index > 0);
+    }
+    getCardComponent = () => {
+        if (this.isSmallCard()) {
+            return <CardSmall image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
+        } else {
+            return <CardLarge image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
+        }
+    }
+    render() {
+        return (this.getCardComponent());
+    }
 }
+
 
 export default VideoListItem;
