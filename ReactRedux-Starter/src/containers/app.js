@@ -10,11 +10,15 @@ class App extends Component {
         super(props);
         this.state = {
             popularMovies: [],
+            recommendMovies: [],
             currentMovie: {},
             showSearchInput: false
         };
     }
     componentWillMount() {
+        this.initPopularAndCurrentMovies();
+    }
+    initPopularAndCurrentMovies = () =>{
         videoService.getPopularMovies().then(({ data: { results } }) => {
             let [currentMovie, ...popularMovies] = (results).splice(1, 6);
             this.setState({
@@ -22,6 +26,12 @@ class App extends Component {
             });
             this.pushYoutubeKeyToCurrentMovie(currentMovie);
         })
+    }
+    setRecommendations = (idMovie) =>{
+        return videoService.getRecommendationsMovie(idMovie).then( ({ data: { results } }) => {
+            console.log(results);
+            return results;
+        });
     }
     pushYoutubeKeyToCurrentMovie = (currentMovie) => {
         videoService.getUrlVideoMovie(currentMovie.id).then(
@@ -38,9 +48,13 @@ class App extends Component {
                     const youtubeKey = firstVideo.key;
                     currentMovie.youtubeKey = youtubeKey;
                 }
-                this.setState({
-                    currentMovie
-                });
+                this.setRecommendations(
+                    currentMovie.id).then( (recommendMovies) => this.setState({
+                        currentMovie,
+                        recommendMovies
+                    }) 
+                );
+
             }
         )
     }
@@ -70,8 +84,8 @@ class App extends Component {
 
     render() {
         const renderMovieList = () => {
-            if (this.state.popularMovies.length > 0) {
-                return <VideoList onClickCard={this.clickCardHandler} videos={this.state.popularMovies} />
+            if (this.state.recommendMovies.length > 0) {
+                return <VideoList onClickCard={this.clickCardHandler} videos={this.state.recommendMovies.splice(0, 5)} />
             }
         }
         const renderMovieGrid = () => {
