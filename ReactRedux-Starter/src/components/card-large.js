@@ -1,7 +1,7 @@
 import React  from 'react';
 import { ReactDom } from 'react-dom';
 
-const CardLarge = ({ title, image }) => {
+const CardLarge = ({ title, image, onClick }) => {
 
     const heigth = 620;
 
@@ -62,7 +62,7 @@ const CardLarge = ({ title, image }) => {
         zIndex: 1
     }
 
-    return (<div className={`card col l6 s12 m12`} style={cardCss}>
+    return (<div className={`card col l6 s12 m12`} style={cardCss} onClick={onClick}>
         <div className="card-image waves-effect waves-block waves-light" style={cardImageCss}>
             <div className="card-content" style={cardContentCss}>
                 <span className="card-title activator grey-text text-darken-4" style={cardTitle}>

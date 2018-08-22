@@ -13,7 +13,8 @@ class VideoListItem extends Component {
             release_date: props.release_date,
             title: props.title,
             index: props.index,
-            poster_path: props.poster_path
+            poster_path: props.poster_path,
+            onClickCard:props.onClickCard
         };
     }
     isSmallCard = () => {
@@ -21,9 +22,9 @@ class VideoListItem extends Component {
     }
     getCardComponent = () => {
         if (this.isSmallCard()) {
-            return <CardSmall image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
+            return <CardSmall onClick={this.state.onClickCard} image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
         } else {
-            return <CardLarge image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
+            return <CardLarge onClick={this.state.onClickCard} image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
         }
     }
     render() {
