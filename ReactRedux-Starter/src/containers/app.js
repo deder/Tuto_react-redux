@@ -33,8 +33,10 @@ class App extends Component {
                     }
                 }
             ) => {
-                const youtubeKey = firstVideo.key;
-                currentMovie.youtubeKey = youtubeKey;
+                if(firstVideo && firstVideo.key){
+                    const youtubeKey = firstVideo.key;
+                    currentMovie.youtubeKey = youtubeKey;
+                }
                 this.setState({
                     currentMovie
                 });
@@ -48,6 +50,18 @@ class App extends Component {
     }
     searchHandler = (text) => {
         console.log(text);
+        videoService.getSearchMovie(text).then(
+            ({
+                data: {
+                    results
+                }
+            }) => {
+                console.log(results);
+                if(results && results.length>0){
+                    this.pushYoutubeKeyToCurrentMovie(results[0])
+                }
+            }
+        );
     }
     clickCardHandler = video => event => {
         this.pushYoutubeKeyToCurrentMovie(video);
@@ -79,7 +93,7 @@ class App extends Component {
                             }}>
                                 <i className="material-icons">subscriptions</i>My Movies
                             </a>
-                            <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            <ul id="nav-mobile" className="right">
                                 <li>
                                     <a href="#" className="waves-effect waves-light">
                                         <i className="material-icons" onClick={this.showForm}>
@@ -98,7 +112,7 @@ class App extends Component {
                     {renderMovieList()}
                     {renderVideoDetail()}
                 </div>
-                <footer className="page-footer" style={{clear: 'both', backgroundColor:"#006958"}}>
+                <footer className="page-footer" style={{ clear: 'both', backgroundColor: "#006958" }}>
                     <div className="container">
                         <div className="row">
                             <div className="col l6 s12">
@@ -117,7 +131,7 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="footer-copyright" style={{
-                        backgroundColor:"#004D40"
+                        backgroundColor: "#004D40"
                     }}>
                         <div className="container">
                             © 2014 Copyright Text

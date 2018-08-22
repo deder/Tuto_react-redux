@@ -2,9 +2,18 @@ import React from 'react';
 import Video from './video';
 
 const VideoDetail = ({title, resume, release_date, youtubeKey}) =>{
+
+        const getVideo = () => {
+            if(youtubeKey){
+                return <Video width="100%" videoId={youtubeKey}/>
+            }else{
+                return <img src="http://www.azamedical.com/boutique/images_produits/no_image2-z.jpg"/>
+            }
+        }
+
         return (
             <div className="row">
-                <div className="col s12 m6 offset-m3">
+                <div className="col s12 m12 l6 offset-l3">
                     <div className="card">
                         <div className="card-content">
                             <i className="material-icons circle " style={{
@@ -17,8 +26,10 @@ const VideoDetail = ({title, resume, release_date, youtubeKey}) =>{
                                 display:"inline"
                             }}>{title}</h5>
                         </div>
-                        <div className="card-image">
-                            <Video width="100%" videoId={youtubeKey}/>
+                        <div className="card-image" style={{
+                            padding:"10"
+                        }}>
+                            {getVideo()}
                         </div>
                         <div className="card-content">
                             <span className="card-title">Synopsis :</span>

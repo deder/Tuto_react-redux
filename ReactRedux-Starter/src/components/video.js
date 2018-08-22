@@ -12,7 +12,6 @@ const Video = ({videoId, width}) => {
             showinfo:0
         }
     };
-    console.log(videoId)
     return (
         <YouTube videoId={videoId} opts={opts} />
     );
