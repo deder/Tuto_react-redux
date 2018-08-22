@@ -46,7 +46,9 @@ class App extends Component {
             showSearchInput: true
         });
     }
-
+    searchHandler = (text) => {
+        console.log(text);
+    }
     clickCardHandler = video => event => {
         this.pushYoutubeKeyToCurrentMovie(video);
     }
@@ -86,7 +88,7 @@ class App extends Component {
                                     </a>
                                 </li>
                             </ul>
-                            <SearchBar showSearchInput={
+                            <SearchBar onSearch={this.searchHandler} showSearchInput={
                                 this.state.showSearchInput
                             } />
                         </div>

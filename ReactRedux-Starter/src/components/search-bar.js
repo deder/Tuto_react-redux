@@ -7,12 +7,14 @@ class SearchBar extends Component {
         this.state = {
             searchText: "",
             placeHolder: "Entrer le nom d'un film",
+            onSearch:props.onSearch,
             showSearchInput: props.showSearchInput
         }
     }
     componentWillReceiveProps(props) {
         this.state = {
-            showSearchInput: props.showSearchInput
+            showSearchInput: props.showSearchInput,
+            onSearch: props.onSearch
         }
     }
     hideForm = () => {
@@ -20,9 +22,9 @@ class SearchBar extends Component {
             showSearchInput: false
         });
     }
-    onEnter = (event) => {
+    onEnterHandler = (event) => {
         if (event.key === 'Enter') {
-            console.log(event.target.value)
+            this.state.onSearch(event.target.value);
             event.preventDefault();
         }
     }
@@ -46,7 +48,7 @@ class SearchBar extends Component {
                         color: "black",
                         cursor: "pointer"
                     }}>close</i>
-                    <input id="search" type="search" onKeyPress={this.onEnter} value={this.state.searchText} placeholder={this.state.placeHolder} style={{
+                    <input id="search" type="search" onKeyPress={this.onEnterHandler} value={this.state.searchText} placeholder={this.state.placeHolder} style={{
                         paddingLeft: "24px",
                         paddingRight: "24px",
                         color: "grey"
