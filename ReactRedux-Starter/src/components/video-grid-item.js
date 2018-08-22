@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { ReactDom } from 'react-dom';
 import moment from 'moment'
 import IhmConfig from '../configs/ihm.config';
-import CollectionItem from './collection-item';
+import CardSmall from './card-small';
+import CardLarge from './card-large';
 moment.locale("fr");
 
-class VideoListItem extends Component {
+class VideoGridItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,13 +22,15 @@ class VideoListItem extends Component {
     }
     getCardComponent = () => {
         if (this.isSmallCard()) {
-            return <CollectionItem onClick={this.state.onClickCard} image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
+            return <CardSmall onClick={this.state.onClickCard} image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
         } else {
-            return <CollectionItem onClick={this.state.onClickCard} image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
+            return <CardLarge onClick={this.state.onClickCard} image={`${IhmConfig.IMAGE_BASE_URL}${this.state.poster_path}`} title={this.state.title} />
         }
     }
     render() {
         return (this.getCardComponent());
     }
 }
-export default VideoListItem;
+
+
+export default VideoGridItem;

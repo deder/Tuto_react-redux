@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import SearchBar from '../components/search-bar';
-import VideoList from './video-list';
+import VideoGrid from './video-grid';
 import videoService from '../services/video.service';
 import VideoDetail from '../components/video-detail';
+import VideoList from './video-list';
 
 class App extends Component {
     constructor(props) {
@@ -73,6 +74,11 @@ class App extends Component {
                 return <VideoList onClickCard={this.clickCardHandler} videos={this.state.popularMovies} />
             }
         }
+        const renderMovieGrid = () => {
+            if (this.state.popularMovies.length > 0) {
+                return <VideoGrid onClickCard={this.clickCardHandler} videos={this.state.popularMovies} />
+            }
+        }
         const renderVideoDetail = () => {
             if (Object.keys(this.state.currentMovie).length > 0) {
                 return <VideoDetail youtubeKey={this.state.currentMovie.youtubeKey} title={this.state.currentMovie.title} resume={this.state.currentMovie.overview} release_date={this.state.currentMovie.release_date} />
@@ -108,9 +114,19 @@ class App extends Component {
                         </div>
                     </nav>
                 </header>
-                <div className="col l8 m12 s12 offset-l2">
-                    {renderMovieList()}
-                    {renderVideoDetail()}
+                <div className="col l8 m12 s12 offset-l2" style={{}}>
+                    <div className="row">
+                        <div className="col l10 m10 offset-m1 s12">
+                            {renderVideoDetail()}
+                        </div>
+                        
+                        <div className="col l2 m10 offset-m1 s12">
+                            {renderMovieList()}
+                        </div>
+                    </div>
+                    <div className="row hide-on-small-only">
+                        {renderMovieGrid()}
+                    </div>
                 </div>
                 <footer className="page-footer" style={{ clear: 'both', backgroundColor: "#006958" }}>
                     <div className="container">
@@ -123,9 +139,6 @@ class App extends Component {
                                 <h5 className="white-text">Links</h5>
                                 <ul>
                                     <li><a className="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                                    <li><a className="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                                    <li><a className="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                                    <li><a className="grey-text text-lighten-3" href="#!">Link 4</a></li>
                                 </ul>
                             </div>
                         </div>

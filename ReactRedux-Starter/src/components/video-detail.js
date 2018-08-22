@@ -13,7 +13,7 @@ const VideoDetail = ({title, resume, release_date, youtubeKey}) =>{
 
         return (
             <div className="row">
-                <div className="col s12 m12 l6 offset-l3">
+                <div className="col s12 m12 l12">
                     <div className="card">
                         <div className="card-content">
                             <i className="material-icons circle " style={{
