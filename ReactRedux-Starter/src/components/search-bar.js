@@ -1,38 +1,41 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-class SearchBar extends Component{
+class SearchBar extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            searchText:"",
-            placeHolder:"Entrer le nom d'un film",
-            showSearchInput:props.showSearchInput
+            searchText: "",
+            placeHolder: "Entrer le nom d'un film",
+            showSearchInput: props.showSearchInput
         }
     }
-    componentWillReceiveProps(props){
+    componentWillReceiveProps(props) {
         this.state = {
-            showSearchInput:props.showSearchInput
+            showSearchInput: props.showSearchInput
         }
     }
     hideForm = () => {
         this.setState({
-            showSearchInput:false
+            showSearchInput: false
         });
     }
-    actionForm = (event) => {
-       console.log(event.target.querySelector('#search').value);
+    onEnter = (event) => {
+        if (event.key === 'Enter') {
+            console.log(event.target.value)
+            event.preventDefault();
+        }
     }
-    render(){
+    render() {
         return (
-            <form className={this.state.showSearchInput?"":"hide"} id="formSearch" style={{
-                position:"absolute",
-                width:"100%",
-                height:"100%",
-                top:0,
-                left:0,
-                backgroundColor:"white"
-            }} onSubmit={this.actionForm}>
+            <form className={this.state.showSearchInput ? "" : "hide"} id="formSearch" style={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                top: 0,
+                left: 0,
+                backgroundColor: "white"
+            }} >
                 <div>
                     <i className="material-icons" onClick={this.hideForm} style={{
                         position: "absolute",
@@ -41,13 +44,13 @@ class SearchBar extends Component{
                         paddingRight: "20px",
                         zIndex: 5,
                         color: "black",
-                        cursor:"pointer"
+                        cursor: "pointer"
                     }}>close</i>
-                    <input id="search" type="search" onChange={this.searchHandler} value={this.state.searchText} placeholder={this.state.placeHolder} style={{
-                        paddingLeft:"24px",
-                        paddingRight:"24px",
-                        color:"grey"
-                    }}/>
+                    <input id="search" type="search" onKeyPress={this.onEnter} value={this.state.searchText} placeholder={this.state.placeHolder} style={{
+                        paddingLeft: "24px",
+                        paddingRight: "24px",
+                        color: "grey"
+                    }} />
                 </div>
             </form>
 
@@ -57,7 +60,7 @@ class SearchBar extends Component{
     searchHandler = (event) => {
         this.setState(
             {
-                searchText : event.target.value
+                searchText: event.target.value
             }
         );
     }
