@@ -8,7 +8,9 @@ class SearchBar extends Component {
             searchText: "",
             placeHolder: "Entrer le nom d'un film",
             onSearch:props.onSearch,
-            showSearchInput: props.showSearchInput
+            showSearchInput: props.showSearchInput,
+            intervalTime:1000,
+            lockTimeout:false
         }
     }
     componentWillReceiveProps(props) {
@@ -24,9 +26,26 @@ class SearchBar extends Component {
     }
     onEnterHandler = (event) => {
         if (event.key === 'Enter') {
-            this.state.onSearch(event.target.value);
+            this.setSearch(event.target.value);
             event.preventDefault();
         }
+    }
+    setSearch = (value) => {
+        this.state.onSearch(value);
+        this.setState({
+            lockTimeout:false
+        });
+    }
+    setTimedSearch = (value) => {
+        if( !this.state.lockTimeout ){
+            this.setState({
+                lockTimeout:true
+            })
+            setTimeout(this.state.intervalTime, this.setSearch(value));
+        }
+    }
+    onChangeHandler= (event) => {
+        this.setTimedSearch(event.target.value);
     }
     render() {
         return (
@@ -48,7 +67,7 @@ class SearchBar extends Component {
                         color: "black",
                         cursor: "pointer"
                     }}>close</i>
-                    <input id="search" type="search" onKeyPress={this.onEnterHandler} value={this.state.searchText} placeholder={this.state.placeHolder} style={{
+                    <input id="search" type="search" onChange={this.onChangeHandler} onKeyPress={this.onEnterHandler} value={this.state.searchText} placeholder={this.state.placeHolder} style={{
                         paddingLeft: "24px",
                         paddingRight: "24px",
                         color: "grey"
@@ -60,7 +79,7 @@ class SearchBar extends Component {
         );
     }
     searchHandler = (event) => {
-        this.setState(
+        this.classNamete(
             {
                 searchText: event.target.value
             }
