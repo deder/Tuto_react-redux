@@ -1,21 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 import User from './user';
-import CollectionLink from './materializeCSS/collections/collection-link';
+import Collection from './materializeCSS/collections/collection';
 import Utils from './materializeCSS/utils/utils';
-import CollectionItemAvatar from './materializeCSS/collections/collection-item-avatar';
-import CollectionItem from './materializeCSS/collections/collection-item';
+import {connect} from 'react-redux'
 
-const UserList = ({className=[], children=[]}) => {
-    className = Utils.forcedClassNameToArray(className);
-    return (
-        <CollectionLink header={ {
-            title:"Liste d'utilisateur"
-        } } className={className.join(" ")}>
-            <User href="http://www.google.fr">User1</User>
-            <CollectionItem >User1</CollectionItem>
-            <CollectionItemAvatar className="valign-wrapper active" icon="face">User2</CollectionItemAvatar>
-        </CollectionLink>
-    );
+class UserList extends Component{
+
+    render(){
+        let className = this.props.className;
+        className = Utils.forcedClassNameToArray(className);
+
+        return (
+            <Collection header={ {
+                title:"Liste d'utilisateur"
+            } } className={className.join(" ")}>
+                {
+                    this.props.users.map((user)=>{
+                        return (<User className="valign-wrapper click" key={user.id}>{user.nom}</User>);
+                    })
+                }
+            </Collection>
+        );
+    }
 }
-
-export default UserList;
+function mapStateToProps(state){
+    return {
+        users : state.users
+    }
+}
+export default connect(mapStateToProps)(UserList);
