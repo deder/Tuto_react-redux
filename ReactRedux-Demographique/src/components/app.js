@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
+import SearchBar from '../containers/search-bar';
+import { getCountries } from './../actions/index';
 
-export default class App extends Component {
+class App extends Component {
   render() {
-    return (<div></div>);
+    return (
+      <div>
+        <SearchBar />
+      </div>
+    );
   }
 }
+
+export default App;
