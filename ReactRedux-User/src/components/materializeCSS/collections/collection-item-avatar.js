@@ -1,9 +1,9 @@
 import React from 'react';
 import Utils from '../utils/utils';
+import CollectionItem from './collection-item';
 
-const CollectionItemAvatar = ({className=[], children=[], src, icon}) => {
+const CollectionItemAvatar = ({className=[], children=[], onClick, src, icon}) => {
     className = Utils.forcedClassNameToArray(className);
-    className.push("collection-item");
     className.push("avatar");
     const getAvatar = () => {
         if(src){
@@ -14,10 +14,10 @@ const CollectionItemAvatar = ({className=[], children=[], src, icon}) => {
     }
 
     return (
-        <li className={className.join(" ")}>
+        <CollectionItem {...{onClick}} className={className.join(" ")}>
             {getAvatar()}
             {children}
-        </li>
+        </CollectionItem>
     );
 }
 
