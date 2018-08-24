@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import User from './user';
-import Collection from './materializeCSS/collections/collection';
-import Utils from './materializeCSS/utils/utils';
 import {connect} from 'react-redux'
+import Collection from '../components/materializeCSS/collections/collection';
+import User from '../components/user';
+import Utils from '../components/materializeCSS/utils/utils';
+
 
 class UserList extends Component{
-
     render(){
         let className = this.props.className;
         className = Utils.forcedClassNameToArray(className);
