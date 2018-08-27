@@ -1,8 +1,8 @@
 import Axios from "../../node_modules/axios";
 
 export const GET_COUNTRIES = "GET_COUNTRY";
-export const GET_MORTALITY = "GET_MORTALITY";
-export const ERROR_GET_MORTALITY = "ERROR_GET_MORTALITY";
+export const GET_MORTALITIES = "GET_MORTALITY";
+export const ERROR_GET_MORTALITIES = "ERROR_GET_MORTALITY";
 export const ERROR_GET_COUNTRIES = "ERROR_GET_COUNTRIES";
 const DEFAULT_PARAM = "25/today"
 const API_END_POINT = "http://api.population.io:80/1.0/";
@@ -34,7 +34,7 @@ export const getMortality = (country) => {
     return (dispatch) =>{
         Axios.all([getMortalityMale(country), getMortalityFemale(country)]).then(([responseMale, responseFemale]) => {
             dispatch ({
-                type:GET_MORTALITY,
+                type:GET_MORTALITIES,
                 payload:{
                     country,
                     male: responseMale.data.mortality_distribution,
@@ -43,7 +43,7 @@ export const getMortality = (country) => {
             });
         },(error)=>{
             dispatch ({
-                type:ERROR_GET_MORTALITY,
+                type:ERROR_GET_MORTALITIES,
                 error:error.response.data.detail
             });
         })

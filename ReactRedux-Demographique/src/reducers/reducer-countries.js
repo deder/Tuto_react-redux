@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, ERROR_GET_COUNTRIES, GET_MORTALITY, ERROR_GET_MORTALITY } from './../actions/index';
+import { GET_COUNTRIES, ERROR_GET_COUNTRIES } from './../actions/index';
 export default (state=null, action) =>{
     switch(action.type){
         case GET_COUNTRIES : 

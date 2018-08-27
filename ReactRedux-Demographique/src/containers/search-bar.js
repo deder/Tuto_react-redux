@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getCountries, getMortality } from '../actions';
+const URL_BASE = 'http://www.sciencekids.co.nz/images/pictures/flags680/'
 import ReactDOM from 'react-dom';
 
 class SearchBar extends Component {
@@ -64,8 +65,7 @@ class SearchBar extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        countries: state.countries,
-        mortality: state.mortality
+        countries: state.countries
     }
 }
 const mapDispatchToProps = (dispatch) => {
