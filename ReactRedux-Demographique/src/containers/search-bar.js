@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getCountries } from '../actions';
+import { getCountries, getMortality } from '../actions';
 import ReactDOM from 'react-dom';
+
 class SearchBar extends Component {
     constructor(props) {
         super(props);
@@ -26,10 +27,14 @@ class SearchBar extends Component {
     setCountry = (event) =>{
         this.setState({
             selectedCountry:event.target.value
-        });
+        }, this.searchMortality);
+    }
+    searchMortality = () => {
+        this.props.getMortality(this.state.selectedCountry);
     }
     renderCountries = () => {
         const { countries } = this.props;
+        console.log(this.props)
         if (countries) {
             return (
                 <div className="input-field col s12">
@@ -59,10 +64,11 @@ class SearchBar extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        countries: state.countries
+        countries: state.countries,
+        mortality: state.mortality
     }
 }
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getCountries }, dispatch)
+    return bindActionCreators({ getCountries, getMortality }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from '../containers/search-bar';
-import { getCountries } from './../actions/index';
+import { getCountries, getMortality } from './../actions/index';
 const DEFAULT_COUNTRY= "France";
 class App extends Component {
   render() {
