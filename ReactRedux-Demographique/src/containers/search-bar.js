@@ -1,37 +1,60 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import { getCountries } from '../actions';
-
-class SearchBar extends Component{
-    componentWillMount(){
+import ReactDOM from 'react-dom';
+class SearchBar extends Component {
+    constructor(props) {
+        super(props);
+        this.inputField = React.createRef();
+    }
+    componentWillMount() {
         this.props.getCountries();
     }
-    getCountriesDomNode = () =>{
-        if(this.props.countries){
-            return this.props.countries.map(
-                (country)=>{
-                    (<div>{country}</div>)
-                }
+    componentDidMount(){
+        const generateListCountries = () => {
+            const element = this.inputField.current;
+            $(element).ready(function() {
+                $(element).formSelect();
+            });
+        }
+        setTimeout(generateListCountries,0);
+    }
+    renderCountries = () => {
+        const { countries } = this.props;
+        if (countries) {
+            return (
+                <div className="input-field col s12">
+                    <select ref={this.inputField}>
+                        <option value="" disabled >Choose a country</option>
+                        {
+                            countries.map(
+                                (country) => {
+                                    return <option key={country} value={country}>{country}</option>
+                                }
+                            )
+                        }
+                    </select>
+                    <label>Country selector</label>
+                </div>
             )
         }
-        return [];
-
+        return (<div>No countries !!!!</div>);
     }
-    render(){
+    render() {
         return (
             <div>
-                {this.getCountriesDomNode()}
+                {this.renderCountries()}
             </div>
         )
     }
 }
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state) => {
     return {
-        countries:state.countries
+        countries: state.countries
     }
 }
-const mapDispatchToProps = (dispatch)=>{
-    return bindActionCreators({getCountries}, dispatch)
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getCountries }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
