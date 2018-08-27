@@ -7,6 +7,9 @@ class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.inputField = React.createRef();
+        this.state = {
+            selectedCountry:props.defaultCountry
+        }
     }
     componentWillMount() {
         this.props.getCountries();
@@ -20,12 +23,17 @@ class SearchBar extends Component {
         }
         setTimeout(generateListCountries,0);
     }
+    setCountry = (event) =>{
+        this.setState({
+            selectedCountry:event.target.value
+        });
+    }
     renderCountries = () => {
         const { countries } = this.props;
         if (countries) {
             return (
                 <div className="input-field col s12">
-                    <select ref={this.inputField}>
+                    <select ref={this.inputField} value={this.state.selectedCountry} onChange={this.setCountry}>
                         <option value="" disabled >Choose a country</option>
                         {
                             countries.map(
