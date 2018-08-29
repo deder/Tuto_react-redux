@@ -4,6 +4,18 @@ import { bindActionCreators } from 'redux'
 import { readAllPost, deletePost } from './../actions/index';
 import PostListItem from '../components/post-list-item';
 import Collection from '../components/materializeCSS/collections/collection';
+import { Link } from 'react-router-dom';
+
+const relativeStyle = {
+  position: "relative"
+}
+const floatingBtnStyle = {
+  top : "-10px",
+  right: "0"
+}
+
+
+
 
 class PostList extends Component {
   componentWillMount() {
@@ -34,8 +46,13 @@ class PostList extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={relativeStyle}>
         <h1>Liste des posts</h1>
+        <Link to={'create-post'}>
+          <a style={floatingBtnStyle}className="btn-floating halfway-fab waves-effect waves-light red">
+           <i className="material-icons">add</i>
+          </a>
+      </Link>
         <Collection>
           {this.renderPosts()}
         </Collection>
