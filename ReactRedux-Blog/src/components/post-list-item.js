@@ -1,37 +1,23 @@
 import React from 'react'
-
-
-const fontLittleStyle = {
-  fontSize:"12px"
+import CollectionItem from './materializeCSS/collections/collection-item';
+import { Link } from 'react-router-dom';
+const marginBottomNullstyle = {
+  marginBottom :"0"
 }
 
-const relativeStyle = {
-  position: "relative"
-}
-const floatingBtnStyle = {
-  top : "-10px",
-  right: "0"
-}
-
-
-const PostListItem = ({ post }) => {
-  const { title, content, author, date } = post;
-  console.log(title);
-  return(
-    <div style={relativeStyle} className="row col s12">
-      <a style={floatingBtnStyle} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></a>
-      <div className="col s12">
-        <div className="card blue-grey darken-1">
-          <div className="card-content white-text row">
-            <span className="card-title col s8">{title}</span>
-            <span style={fontLittleStyle} className="card-title col s4 right-align">{date}</span>
-            <p>{content}</p>
-            <span style={fontLittleStyle} className="card-title col s12 right-align">{author}</span>
-          </div>
-        </div>
-      </div>
+const PostListItem = ({ deleteClickCallBack, post }) => {
+  const { id, title, content, author, date } = post;
+  return(<CollectionItem>
+    <div style={marginBottomNullstyle} className="row">
+      <span className="col">{id}</span>
+      <span className="col">
+      <Link to={`post/${id}`}>{title}</Link>
+      </span>
+      <a href="#!" onClick={deleteClickCallBack(id)} className="secondary-content"><i className="material-icons red-text darken-2 waves-light">delete_forever</i></a>
     </div>
-  )
+
+
+  </CollectionItem>)
 }
 
 

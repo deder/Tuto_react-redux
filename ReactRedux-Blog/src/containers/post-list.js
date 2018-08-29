@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
-import { readAllPost } from './../actions/index';
+import { readAllPost, deletePost } from './../actions/index';
 import PostListItem from '../components/post-list-item';
-
-const fontLittleStyle = {
-  fontSize:"12px"
-}
+import Collection from '../components/materializeCSS/collections/collection';
 
 class PostList extends Component {
   componentWillMount() {
@@ -18,11 +15,18 @@ class PostList extends Component {
 
     return false;
   }
+  deleteClickCallBack= id => event =>{
+    console.log("delete !!!!!", id );
+    this.props.deletePost(id);
+  };
+  
   renderPosts = () => {
     if (this.hasPosts()) {
       return this.props.posts.map((post) => {
+        let deleteClickCallBack = this.deleteClickCallBack;
+        let props = {deleteClickCallBack, post};
         return (
-          <PostListItem key={post.id} {...{post}}/>
+          <PostListItem key={post.id} {...props} />
         );
       });
     }
@@ -32,7 +36,9 @@ class PostList extends Component {
     return (
       <div>
         <h1>Liste des posts</h1>
-        <div className="row">{this.renderPosts()}</div>
+        <Collection>
+          {this.renderPosts()}
+        </Collection>
       </div>
     )
   }
@@ -44,6 +50,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ readAllPost }, dispatch);
+  return bindActionCreators({ readAllPost, deletePost }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PostList)

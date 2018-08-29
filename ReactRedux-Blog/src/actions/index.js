@@ -17,6 +17,7 @@ export function readAllPost(){
 export function readPost(id){
     return dispatch => {
         Axios.get(`${END_POINT}/posts/${id}`).then(response=>{
+            console.log(response);
             dispatch({
                 type: AT_POSTS.READ,
                 payload : response.data
@@ -30,7 +31,7 @@ export function deletePost(id){
         Axios.delete(`${END_POINT}/posts/${id}`).then(response=>{
             dispatch({
                 type: AT_POSTS.DELETE,
-                payload : response.data
+                payload : id
             })
         })
     }
