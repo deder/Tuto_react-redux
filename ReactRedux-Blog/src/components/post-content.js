@@ -13,12 +13,12 @@ const floatingBtnStyle = {
 }
 
 
-const PostContent = ({ post }) => {
+const PostContent = ({ post, deletePostHandler }) => {
   const { title, content, author, date } = post;
   console.log(title);
   return(
     <div style={relativeStyle} className="row col s12">
-      <a style={floatingBtnStyle} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></a>
+      <a style={floatingBtnStyle} onClick={deletePostHandler} className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">add</i></a>
       <div className="col s12">
         <div className="card blue-grey darken-1">
           <div className="card-content white-text row">
