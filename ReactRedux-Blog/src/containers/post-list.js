@@ -49,10 +49,10 @@ class PostList extends Component {
       <div style={relativeStyle}>
         <h1>Liste des posts</h1>
         <Link to={'create-post'}>
-          <a style={floatingBtnStyle}className="btn-floating halfway-fab waves-effect waves-light red">
+          <div style={floatingBtnStyle} className="btn-floating halfway-fab waves-effect waves-light red">
            <i className="material-icons">add</i>
-          </a>
-      </Link>
+          </div>
+        </Link>
         <Collection>
           {this.renderPosts()}
         </Collection>
