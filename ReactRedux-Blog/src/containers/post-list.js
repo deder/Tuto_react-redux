@@ -28,7 +28,6 @@ class PostList extends Component {
     return false;
   }
   deleteClickCallBack= id => event =>{
-    console.log("delete !!!!!", id );
     this.props.deletePost(id);
   };
   

@@ -16,6 +16,7 @@ const floatingBtnStyle = {
 
 const validate = (values) =>{
   const errors = {};
+  console.log(values)
   if(!values.title){
     errors.title = "Veuillez remplir le titre";
   }    
@@ -38,8 +39,6 @@ class PostForm extends Component {
 
   render() {
     const {fields, handleSubmit, errors} = this.props;
-
-    console.log(errors);
     return (
     <div>
       <Link to={"/"} >

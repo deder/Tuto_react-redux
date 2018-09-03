@@ -6,7 +6,6 @@ import { readPost, deletePost } from './../actions/index';
 
 class Post extends Component {
   componentWillMount(){
-    console.log(this.props.match.params.id);
     this.props.readPost(this.props.match.params.id)
   }
   deletePostHandler = ()=>{
@@ -29,7 +28,6 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     post: state.post
   }
