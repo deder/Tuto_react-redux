@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom';
 import { Link, BrowserRouter } from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import { createPost } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import 'jodit/build/jodit.min.css';
-import 'jodit/build/jodit.min.js';
-import JoditEditor from "jodit-react";
 import { withRouter } from "react-router-dom";
-
+import Editor from './../components/wysiwyg/editor';
 
 const floatingBtnStyle = {
   top : "15px",
@@ -16,18 +14,32 @@ const floatingBtnStyle = {
   position: "absolute"
 }
 
+const validate = (values) =>{
+  const errors = {};
+  if(!values.title){
+    errors.title = "Veuillez remplir le titre";
+  }    
+  if(!values.content){
+    errors.content = "Veuillez remplir le contenu"; 
+  }    
+  if(!values.author){
+    errors.author = "Veuillez remplir le nom d'auteur";
+  }
+  return errors
+}
 
 const formConfig = {
   form: "createPostForm",
-  fields: ['title','content', 'author' ]
+  fields: ['title','content', 'author' ],
+  validate: validate
 }
 
 class PostForm extends Component {
 
   render() {
-    const {fields, handleSubmit} = this.props;
+    const {fields, handleSubmit, errors} = this.props;
 
-    console.log(this.props)
+    console.log(errors);
     return (
     <div>
       <Link to={"/"} >
@@ -41,20 +53,23 @@ class PostForm extends Component {
           <div className="row">
             <div className="input-field col s12">
               <input type="text" {...fields.title} />
+              <span className="helper-text red-text" >{fields.title.touched && errors.title}</span>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <JoditEditor {...fields.content}/>
+              <Editor {...fields.content} />
+              <span className="helper-text red-text" >{fields.content.touched && errors.content}</span>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s2 offset-s10 right-align">
-              <input type="text" {...fields.author}/>
+              <input type="text" {...fields.author} />
+              <span className="helper-text red-text" >{fields.author.touched && errors.author}</span>
             </div>
           </div>
           <div className="row">
-              <button className="btn waves-effect waves-light offset-s10 col s2" type="submit" name="action">Créer
+              <button disabled={this.props.invalid} className="btn waves-effect waves-light offset-s10 col s2" type="submit" name="action">Créer
                   <i className="material-icons right">add</i>
               </button>
           </div>
@@ -70,6 +85,9 @@ class PostForm extends Component {
   }
 
 }
+
+
+
 
 const mapDispatchToProps = (dispatch) => ({
   ...bindActionCreators({createPost}, dispatch)
