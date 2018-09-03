@@ -48,6 +48,7 @@ const formConfig = {
 }
 
 class PostForm extends Component {
+
   render() {
     const {fields, handleSubmit, errors} = this.props;
     return (
