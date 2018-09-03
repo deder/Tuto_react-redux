@@ -19,7 +19,7 @@ const validate = (values) =>{
   console.log(values)
   if(!values.title){
     errors.title = "Veuillez remplir le titre";
-  }    
+  }
   if(!values.content){
     errors.content = "Veuillez remplir le contenu"; 
   }    
@@ -29,14 +29,25 @@ const validate = (values) =>{
   return errors
 }
 
+const addValidOrInvalidClass = (type,fields,errors) => {
+  if( fields[type].touched && errors[type]){
+    return "invalid";
+  }else if( fields[type].touched ){
+    return "valid";
+ }
+ return "";
+}
+
 const formConfig = {
   form: "createPostForm",
   fields: ['title','content', 'author' ],
-  validate: validate
+  validate: validate,
+  initialValues :{
+    author:"Frédéric COSTA"
+  }
 }
 
 class PostForm extends Component {
-
   render() {
     const {fields, handleSubmit, errors} = this.props;
     return (
@@ -51,20 +62,20 @@ class PostForm extends Component {
         <form className="col s12" onSubmit={handleSubmit(this.createPost)}>
           <div className="row">
             <div className="input-field col s12">
-              <input type="text" {...fields.title} />
+              <input type="text" {...fields.title} placeholder="Titre..." className={addValidOrInvalidClass("title",fields,errors)}  />
               <span className="helper-text red-text" >{fields.title.touched && errors.title}</span>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <Editor {...fields.content} />
+              <Editor {...fields.content} placeholder="Contenu..." className={addValidOrInvalidClass("content",fields,errors)}  />
               <span className="helper-text red-text" >{fields.content.touched && errors.content}</span>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s2 offset-s10 right-align">
-              <input type="text" {...fields.author} />
-              <span className="helper-text red-text" >{fields.author.touched && errors.author}</span>
+              <input type="text" {...fields.author} placeholder="Auteur..." className={addValidOrInvalidClass("author",fields,errors)}  />
+              <span className='helper-text red-text' >{fields.author.touched && errors.author}</span>
             </div>
           </div>
           <div className="row">
