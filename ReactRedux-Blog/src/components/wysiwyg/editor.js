@@ -7,13 +7,23 @@ const Editor =  (params) => {
     <ReactQuill
       {...params}
       onChange={(newValue, delta, source) => {
+        let val = "";
         if (source === 'user') {
-            params.onChange(newValue);
+          if (newValue != "<p><br></p>" && newValue != "<p></p>") {
+            val = newValue;
+          }
+          params.onChange(val);
+          
         }
       }}
       onBlur={(range, source, quill) => {
-        params.onBlur(quill.getHTML());
-      }}
+          let newValue = "";
+          if(quill.getHTML().toString() != "<p><br></p>" && quill.getHTML().toString() !="<p></p>"){
+            newValue = quill.getHTML();
+          }
+          params.onBlur( newValue);
+        } 
+      }
     />
   )
 }
