@@ -1,8 +1,8 @@
-import React from 'react'
-import ReactDom from 'react-dom'
-import IhmConfig from './configs/ihm.config'
-import App from './containers/app'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './containers/app';
+import registerServiceWorker from './registerServiceWorker';
 
-const API_KEY = IhmConfig.API_KEY;
-
-ReactDom.render(<App />, document.querySelector(".container"));
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();

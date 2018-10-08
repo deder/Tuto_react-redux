@@ -1,5 +1,4 @@
 import React  from 'react';
-import { ReactDom } from 'react-dom';
 
 const CardLarge = ({ title, image, onClick }) => {
 
@@ -71,7 +70,7 @@ const CardLarge = ({ title, image, onClick }) => {
                 <div className="card-content-background" style={cardContentBackground}></div>
             </div>
             <div style={overActivator}></div>
-            <img className="activator" src={image} />
+            <img className="activator" src={image} alt="vignette film" />
         </div>
     </div>)
 }

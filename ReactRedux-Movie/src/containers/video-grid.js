@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React from 'react';
 import VideoGridItem from './../components/video-grid-item';
 
 const VideoGrid = ({videos, onClickCard}) => {

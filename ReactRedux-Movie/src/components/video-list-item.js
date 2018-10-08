@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ReactDom } from 'react-dom';
 import moment from 'moment'
 import IhmConfig from '../configs/ihm.config';
 import CollectionItem from './collection-item';

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CollectionItem /> CollectionItem Sans image 1`] = `
+<li
+  className="collection-item avatar"
+  onClick={[Function]}
+>
+  <span
+    className="title"
+  >
+    title
+  </span>
+  <p>
+    description
+  </p>
+</li>
+`;
+
+exports[`<CollectionItem /> CollectionItem avec image 1`] = `
+<li
+  className="collection-item avatar"
+  onClick={[Function]}
+>
+  <img
+    alt="title"
+    className="circle"
+    src="test.png"
+  />
+  <span
+    className="title"
+  >
+    title
+  </span>
+  <p>
+    description
+  </p>
+</li>
+`;
