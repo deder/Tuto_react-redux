@@ -7,7 +7,7 @@ const VideoDetail = ({title, resume, release_date, youtubeKey}) =>{
             if(youtubeKey){
                 return <Video width="100%" videoId={youtubeKey}/>
             }else{
-                return <img  style={{
+                return <img alt="video vignette"  style={{
                     maxHeight:"390"
                 }} src="http://www.azamedical.com/boutique/images_produits/no_image2-z.jpg"/>
             }

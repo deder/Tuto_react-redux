@@ -8,40 +8,32 @@ class SearchBar extends Component {
             searchText: "",
             placeHolder: "Entrer le nom d'un film",
             onSearch:props.onSearch,
-            showSearchInput: props.showSearchInput,
             intervalTime:1000,
-            lockTimeout:false
+            lockTimeout:false,
+            toogleShowForm:props.toogleShowForm
         }
     }
-    componentWillReceiveProps(props) {
-        this.state = {
-            showSearchInput: props.showSearchInput,
-            onSearch: props.onSearch
-        }
-    }
-    hideForm = () => {
-        this.setState({
-            showSearchInput: false
-        });
-    }
+
     onEnterHandler = (event) => {
         if (event.key === 'Enter') {
-            this.setSearch(event.target.value);
+            setTimeout( this.setSearch(event.target.value))
             event.preventDefault();
         }
     }
-    setSearch = (value) => {
+    setSearch = (value) =>() => {
         this.state.onSearch(value);
         this.setState({
             lockTimeout:false
         });
     }
     setTimedSearch = (value) => {
-        if( !this.state.lockTimeout ){
+        if( !this.state.lockTimeout){
             this.setState({
                 lockTimeout:true
+            },()=>{
+                setTimeout(this.setSearch(value), this.state.intervalTime);
             })
-            setTimeout(this.state.intervalTime, this.setSearch(value));
+           
         }
     }
     onChangeHandler= (event) => {
@@ -49,7 +41,7 @@ class SearchBar extends Component {
     }
     render() {
         return (
-            <form className={this.state.showSearchInput ? "" : "hide"} id="formSearch" style={{
+            <form id="formSearch" style={{
                 position: "absolute",
                 width: "100%",
                 height: "100%",
@@ -58,7 +50,7 @@ class SearchBar extends Component {
                 backgroundColor: "white"
             }} >
                 <div>
-                    <i className="material-icons" onClick={this.hideForm} style={{
+                    <i className="material-icons" onClick={this.state.toogleShowForm} style={{
                         position: "absolute",
                         right: 0,
                         paddingLeft: "20px",
@@ -76,13 +68,6 @@ class SearchBar extends Component {
             </form>
 
 
-        );
-    }
-    searchHandler = (event) => {
-        this.classNamete(
-            {
-                searchText: event.target.value
-            }
         );
     }
 }

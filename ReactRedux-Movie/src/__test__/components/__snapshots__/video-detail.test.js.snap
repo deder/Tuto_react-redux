@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<VideoDetail /> VideoDetail Avec video 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col s12 m12 l12"
+  >
+    <div
+      className="card"
+    >
+      <div
+        className="card-content"
+      >
+        <i
+          className="material-icons circle "
+          style={
+            Object {
+              "backgroundColor": "#004D40",
+              "color": "white",
+              "marginRight": "10",
+              "padding": "10",
+            }
+          }
+        >
+          video_library
+        </i>
+        <h5
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          title
+        </h5>
+      </div>
+      <div
+        className="card-image"
+        style={
+          Object {
+            "padding": "10",
+          }
+        }
+      >
+        <span
+          className=""
+        >
+          <div
+            className={null}
+            id={null}
+          />
+        </span>
+      </div>
+      <div
+        className="card-content"
+      >
+        <span
+          className="card-title"
+        >
+          Synopsis :
+        </span>
+        <p>
+          resume
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<VideoDetail /> VideoDetail Sans video 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col s12 m12 l12"
+  >
+    <div
+      className="card"
+    >
+      <div
+        className="card-content"
+      >
+        <i
+          className="material-icons circle "
+          style={
+            Object {
+              "backgroundColor": "#004D40",
+              "color": "white",
+              "marginRight": "10",
+              "padding": "10",
+            }
+          }
+        >
+          video_library
+        </i>
+        <h5
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          title
+        </h5>
+      </div>
+      <div
+        className="card-image"
+        style={
+          Object {
+            "padding": "10",
+          }
+        }
+      >
+        <img
+          alt="video vignette"
+          src="http://www.azamedical.com/boutique/images_produits/no_image2-z.jpg"
+          style={
+            Object {
+              "maxHeight": "390",
+            }
+          }
+        />
+      </div>
+      <div
+        className="card-content"
+      >
+        <span
+          className="card-title"
+        >
+          Synopsis :
+        </span>
+        <p>
+          resume
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,20 @@
+{
+  "name": "ReactMultiProjets",
+  "version": "1.0.0",
+  "description": "Yarn workspaces with multiple jest project configs",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:movie",
+    "install:movie": "npm -prefix ./ReactRedux-Movie/ install",
+    "test:movie": "npm -prefix ./ReactRedux-Movie/ test"
+  },
+  "devDependencies": {
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "react-scripts": "2.0.4",
+    "react-test-renderer": "16.5.2"
+  }
+}

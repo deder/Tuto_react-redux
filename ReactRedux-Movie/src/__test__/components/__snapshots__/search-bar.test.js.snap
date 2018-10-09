@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBar /> Snapshot 1`] = `
+<form
+  id="formSearch"
+  style={
+    Object {
+      "backgroundColor": "white",
+      "height": "100%",
+      "left": 0,
+      "position": "absolute",
+      "top": 0,
+      "width": "100%",
+    }
+  }
+>
+  <div>
+    <i
+      className="material-icons"
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "black",
+          "cursor": "pointer",
+          "paddingLeft": "20px",
+          "paddingRight": "20px",
+          "position": "absolute",
+          "right": 0,
+          "zIndex": 5,
+        }
+      }
+    >
+      close
+    </i>
+    <input
+      id="search"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Entrer le nom d'un film"
+      style={
+        Object {
+          "color": "grey",
+          "paddingLeft": "24px",
+          "paddingRight": "24px",
+        }
+      }
+      type="search"
+      value=""
+    />
+  </div>
+</form>
+`;

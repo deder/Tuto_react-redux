@@ -12,15 +12,12 @@ class VideoService {
         return axios.get(this.urlsService.popularMovies)
     }
     getUrlVideoMovie = (id) => {
-        console.log(this.urlsService.urlVideoMovie.replace("[id]",id))
         return axios.get(this.urlsService.urlVideoMovie.replace("[id]",id))
     }
     getSearchMovie = (searchTxt) => {
-        console.log(this.urlsService.urlSearchMovie.replace("[searchTxt]",searchTxt))
         return axios.get(this.urlsService.urlSearchMovie.replace("[searchTxt]",searchTxt))
     }
     getRecommendationsMovie = (id) => {
-        console.log(this.urlsService.urlSearchMovie.replace("[id]",id))
         return axios.get(this.urlsService.urlRecommendationsVideoMovie.replace("[id]",id))
     }
 }

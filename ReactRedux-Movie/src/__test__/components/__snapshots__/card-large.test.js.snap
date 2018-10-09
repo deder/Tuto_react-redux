@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CardLarge /> Snapshot 1`] = `
+<div
+  className="card col l6 s12 m12"
+  style={
+    Object {
+      "height": "auto",
+      "marginBottom": 0,
+      "marginTop": 0,
+      "paddingBottom": "10px",
+      "paddingTop": "10px",
+    }
+  }
+>
+  <div
+    className="card-image waves-effect waves-block waves-light"
+    style={
+      Object {
+        "maxHeight": "620px",
+      }
+    }
+  >
+    <div
+      className="card-content"
+      style={
+        Object {
+          "bottom": 0,
+          "height": "90px",
+          "maxHeight": "none",
+          "overflow": "inherit",
+          "padding": "24px",
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <span
+        className="card-title activator grey-text text-darken-4"
+        style={
+          Object {
+            "color": "white !important",
+            "display": "inline-block",
+            "fontFamily": "Roboto",
+            "fontWeight": 500,
+            "lineHeight": 1.2,
+            "opacity": 0.9,
+            "padding": "0",
+            "paddingBottom": "5px",
+            "paddingLeft": "24px",
+            "paddingRight": "24px",
+            "textAlign": "left",
+            "verticalAlign": "middle",
+            "width": "100%",
+            "zIndex": 2,
+          }
+        }
+      />
+      <div
+        className="card-content-background"
+        style={
+          Object {
+            "backgroundColor": "#004D40",
+            "height": "100%",
+            "left": 0,
+            "opacity": 0.6,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+            "zIndex": 1,
+          }
+        }
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "background": "linear-gradient(-180deg, #004D40, rgba(255, 255, 255, 0))",
+          "bottom": 0,
+          "height": "100%",
+          "left": 0,
+          "opacity": 0.4,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    />
+    <img
+      alt="vignette film"
+      className="activator"
+    />
+  </div>
+</div>
+`;

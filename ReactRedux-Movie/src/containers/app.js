@@ -11,6 +11,7 @@ class App extends Component {
         this.state = {
             popularMovies: [],
             recommendMovies: [],
+            recommandMovies: [],
             currentMovie: {},
             showSearchInput: false
         };
@@ -18,18 +19,19 @@ class App extends Component {
     componentWillMount() {
         this.initPopularAndCurrentMovies();
     }
-    initPopularAndCurrentMovies = () =>{
+    initPopularAndCurrentMovies = () => {
         videoService.getPopularMovies().then(({ data: { results } }) => {
             let [currentMovie, ...popularMovies] = (results).splice(1, 6);
             this.setState({
                 popularMovies
+            }, () => {
+                this.pushYoutubeKeyToCurrentMovie(currentMovie);
             });
-            this.pushYoutubeKeyToCurrentMovie(currentMovie);
+
         })
     }
-    setRecommendations = (idMovie) =>{
-        return videoService.getRecommendationsMovie(idMovie).then( ({ data: { results } }) => {
-            console.log(results);
+    setRecommendations = (idMovie) => {
+        return videoService.getRecommendationsMovie(idMovie).then(({ data: { results } }) => {
             return results;
         });
     }
@@ -44,35 +46,36 @@ class App extends Component {
                     }
                 }
             ) => {
-                if(firstVideo && firstVideo.key){
+                if (firstVideo && firstVideo.key) {
                     const youtubeKey = firstVideo.key;
                     currentMovie.youtubeKey = youtubeKey;
                 }
-                this.setRecommendations(
-                    currentMovie.id).then( (recommendMovies) => this.setState({
-                        currentMovie,
-                        recommendMovies
-                    }) 
+                this.setRecommendations(currentMovie.id).then((recommendMovies) => {
+                    this.setState({
+                        recommandMovies: recommendMovies,
+                        currentMovie
+                    }, (arg) => {
+                        this.state.recommandMovies
+                    });
+                }
                 );
 
             }
         )
     }
-    showForm = (event) => {
-        this.setState({
-            showSearchInput: true
+    toogleShowForm = (event) => {
+        this.setState(prevState => {
+            return ({ showSearchInput: !prevState.showSearchInput })
         });
-    }
+    };
     searchHandler = (text) => {
-        console.log(text);
         videoService.getSearchMovie(text).then(
             ({
                 data: {
                     results
                 }
             }) => {
-                console.log(results);
-                if(results && results.length>0){
+                if (results && results.length > 0) {
                     this.pushYoutubeKeyToCurrentMovie(results[0])
                 }
             }
@@ -81,11 +84,15 @@ class App extends Component {
     clickCardHandler = video => event => {
         this.pushYoutubeKeyToCurrentMovie(video);
     }
-
     render() {
+        const renderSearchBar = () => {
+            if (this.state.showSearchInput)
+                return (<SearchBar onSearch={this.searchHandler} toogleShowForm={this.toogleShowForm} />)
+        }
         const renderMovieList = () => {
-            if (this.state.recommendMovies.length > 0) {
-                return <VideoList onClickCard={this.clickCardHandler} videos={this.state.recommendMovies.splice(0, 5)} />
+            if (this.state.recommandMovies.length > 0) {
+                const recommandMoviesCopie = JSON.parse(JSON.stringify(this.state.recommandMovies));
+                return <VideoList onClickCard={this.clickCardHandler} videos={recommandMoviesCopie.splice(0, 5)} />
             }
         }
         const renderMovieGrid = () => {
@@ -116,15 +123,14 @@ class App extends Component {
                             <ul id="nav-mobile" className="right">
                                 <li>
                                     <a href="#" className="waves-effect waves-light">
-                                        <i className="material-icons" onClick={this.showForm}>
+                                        <i className="material-icons" onClick={this.toogleShowForm}>
                                             search
                                         </i>
                                     </a>
                                 </li>
                             </ul>
-                            <SearchBar onSearch={this.searchHandler} showSearchInput={
-                                this.state.showSearchInput
-                            } />
+                            {renderSearchBar()}
+
                         </div>
                     </nav>
                 </header>
@@ -133,7 +139,7 @@ class App extends Component {
                         <div className="col l10 m10 offset-m1 s12">
                             {renderVideoDetail()}
                         </div>
-                        
+
                         <div className="col l2 m10 offset-m1 s12">
                             {renderMovieList()}
                         </div>
