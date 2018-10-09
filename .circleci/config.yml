@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.11.3
+
+    working_directory: ~/repo/ReactRedux-Movie
+
+    steps:
+      - checkout
+      - run: npm run install:movie
+      - run: npm install
+      - run: npm test
+

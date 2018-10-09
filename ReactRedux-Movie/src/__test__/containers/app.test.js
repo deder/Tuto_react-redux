@@ -86,7 +86,6 @@ describe("<App />",()=>{
             setTimeout(wrapper.instance().clickCardHandler(data.results[3]))
             setTimeout(()=>{
                 try {
-                    console.log(wrapper.state().currentMovie.id);
                     wrapper.update();
                     const titleCurrentMovieMovie = wrapper.state().currentMovie.title
                     expect(titleCurrentMovieMovie).toEqual("La Nonne")
