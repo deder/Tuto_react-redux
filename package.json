@@ -8,8 +8,8 @@
   "private": true,
   "scripts": {
     "test": "yarn run test:movie",
-    "install:movie": "yarn -prefix ./ReactRedux-Movie/ install",
-    "test:movie": "yarn -prefix ./ReactRedux-Movie/ test"
+    "install:movie": "yarn --cwd ./ReactRedux-Movie/ install",
+    "test:movie": "yarn --cwd ./ReactRedux-Movie/ test"
   },
   "devDependencies": {
     "react": "^16.5.2",
