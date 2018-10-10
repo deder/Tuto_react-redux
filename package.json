@@ -7,9 +7,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "npm run test:movie",
-    "install:movie": "npm -prefix ./ReactRedux-Movie/ install",
-    "test:movie": "npm -prefix ./ReactRedux-Movie/ test"
+    "test": "yarn run test:movie",
+    "install:movie": "yarn -prefix ./ReactRedux-Movie/ install",
+    "test:movie": "yarn -prefix ./ReactRedux-Movie/ test"
   },
   "devDependencies": {
     "react": "^16.5.2",
